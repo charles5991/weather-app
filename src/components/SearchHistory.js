@@ -1,29 +1,33 @@
 import React from "react";
+import { SearchIcon, TrashIcon } from "@heroicons/react/outline";
 
 const SearchHistory = ({ history, onSearchAgain, onDelete }) => {
   if (history.length === 0) {
-    return <div>No search history</div>;
+    return <div className="text-red-200 text-center">No search history</div>;
   }
 
   return (
-    <div className="w-full">
-      <h2 className="text-lg font-bold mb-2">Search History</h2>
-      <ul className="divide-y divide-gray-200">
+    <div className="w-full bg-violet-700 rounded-3xl p-3">
+      <h2 className="text-sm mb-2 text-white pl-10">Search History</h2>
+      <ul className="">
         {history.map((item, index) => (
-          <li key={index} className="flex justify-between items-center py-2">
-            <div>{item}</div>
+          <li
+            key={index}
+            className="flex justify-around items-center py-1 m-2 rounded-full bg-indigo-700 "
+          >
+            <div className="text-white">{item}</div>
             <div>
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded mr-2"
+                className="bg-indigo-600 hover:bg-indigo-800 text-white py-1 px-2 rounded-full mr-2"
                 onClick={() => onSearchAgain(item)}
               >
-                Search
+                <SearchIcon className="w-5 h-5 inline-block" />
               </button>
               <button
-                className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded"
+                className="bg-indigo-600 hover:bg-indigo-800 text-white py-1 px-2 rounded-full ml-2"
                 onClick={() => onDelete(index)}
               >
-                Delete
+                <TrashIcon className="w-4 h-4 inline-block" />
               </button>
             </div>
           </li>

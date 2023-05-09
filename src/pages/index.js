@@ -10,6 +10,20 @@ const Home = () => {
   const [error, setError] = useState("");
   const [searchHistory, setSearchHistory] = useState([]);
 
+  const getCustomIconUrl = (condition) => {
+    const conditionLowerCase = condition.toLowerCase();
+
+    if (conditionLowerCase.includes("cloud")) {
+      return "/cloud.png";
+    } else if (
+      conditionLowerCase.includes("sun") ||
+      conditionLowerCase.includes("clear")
+    ) {
+      return "/sun.png";
+    }
+    return "/cloud.png";
+  };
+
   const fetchWeatherData = async (cityAndCountry) => {
     try {
       const response = await axios.get(
@@ -25,12 +39,14 @@ const Home = () => {
 
       const { name, sys, weather, main } = response.data;
 
+      const iconUrl = getCustomIconUrl(weather[0].description);
+
       setWeatherData({
         cityName: name,
         country: sys.country,
         temperature: main.temp,
         condition: weather[0].description,
-        iconUrl: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+        iconUrl: iconUrl,
         humidity: main.humidity,
         highTemp: main.temp_max,
         lowTemp: main.temp_min,
@@ -63,15 +79,17 @@ const Home = () => {
       <Head>
         <title>Next.js Weather App</title>
       </Head>
-
-      <h1 className="text-2xl font-bold mb-4">Weather App</h1>
-      <SearchBar onSearch={handleSearch} />
-      <WeatherDisplay weatherData={weatherData} error={error} />
-      <SearchHistory
-        history={searchHistory}
-        onSearchAgain={fetchWeatherData}
-        onDelete={handleDeleteHistory}
-      />
+      <div className="text-center m-5">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <div className="container mt-24 rounded-2xl border-slate-50	 backdrop-blur-sm p-3 bg-white/30">
+        <WeatherDisplay weatherData={weatherData} error={error} />
+        <SearchHistory
+          history={searchHistory}
+          onSearchAgain={fetchWeatherData}
+          onDelete={handleDeleteHistory}
+        />
+      </div>
     </div>
   );
 };
