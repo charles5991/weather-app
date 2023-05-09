@@ -5,7 +5,6 @@ const SearchHistory = ({ history, onSearchAgain, onDelete }) => {
   if (history.length === 0) {
     return <div className="text-red-200 text-center">No search history</div>;
   }
-
   return (
     <div className="w-full bg-violet-700 rounded-3xl p-3">
       <h2 className="text-sm mb-2 text-white pl-10">Search History</h2>

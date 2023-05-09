@@ -62,7 +62,7 @@ const WeatherDisplay = ({ weatherData, error }) => {
         <p className="text-sm">Humidity: {humidity}%</p>
       </div>
       <div className="col-span-1 text-white font-semibold">
-        <p className="text-lsm">Current Time: {time}</p>
+        <p className="text-lsm">{time}</p>
       </div>
     </div>
   );
