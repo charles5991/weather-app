@@ -1,4 +1,3 @@
-// components/WeatherDisplay.js
 import React, { useState, useEffect } from "react";
 
 const WeatherDisplay = ({ weatherData, error }) => {
@@ -30,6 +29,12 @@ const WeatherDisplay = ({ weatherData, error }) => {
     lowTemp,
   } = weatherData;
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  const formattedCondition = capitalizeFirstLetter(condition);
+
   return (
     <div className="grid grid-cols-3 gap-4 m-2">
       <div className="col-span-2">
@@ -51,7 +56,7 @@ const WeatherDisplay = ({ weatherData, error }) => {
         />
       </div>
       <div className="col-span-1 text-white font-semibold">
-        <h3 className="text-sm mb-2">{condition}</h3>
+        <h3 className="text-sm mb-2">{formattedCondition}</h3>
       </div>
       <div className="col-span-1">
         <p className="text-sm text-white font-semibold">
