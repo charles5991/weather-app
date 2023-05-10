@@ -37,10 +37,10 @@ const WeatherDisplay = ({ weatherData, error }) => {
           Today&apos;s Weather
         </p>
         <h2 className="text-6xl text-white font-semibold mb-2">
-          {temperature}°C
+          {temperature.toFixed()}°C
         </h2>
         <p className="text-sm text-white font-semibold">
-          H: {highTemp}°C / L: {lowTemp}°C
+          H: {highTemp.toFixed()}°C / L: {lowTemp.toFixed()}°C
         </p>
       </div>
       <div className="relative">
